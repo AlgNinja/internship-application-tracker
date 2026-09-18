@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        Learning fullstack
+    </title>
+    <link rel="stylesheet" href="/styles.css">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <form id = "application">
+        <div class="mb-3">
+            <label for="company" class="form-label">Company</label>
+            <input class="form-control" id="company" required>
+        </div>
+        <div class="mb-3">
+            <label for="source" class="form-label">Where did you find this internship?</label>
+            <input class="form-control" id="source" required>
+        </div>
+        <label for="season" class="form-label">What season is the internship?</label>
+        <select class="mb-3" id="season" required>
+            <option selected disabled>Open this select menu</option>
+            <option value="Fall">Fall</option>
+            <option value="Spring">Spring</option>
+            <option value="Summer">Summer</option>
+            <option value="FullYear">Full Academic Year</option>
+        </select>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date Applied</label>
+            <input type="date" id="date" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <h2>Applications</h2>
+
+    <table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Company</th>
+            <th>Source</th>
+            <th>Season</th>
+            <th>Date</th>
+        </tr>
+
+        <tbody id="applications"></tbody>
+    </thead>
+
+    <tbody id="todos"></tbody>
+</table>
+    <script src="/scripts.js"></script>
+</body>
+
+</html>
