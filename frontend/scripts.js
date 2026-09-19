@@ -45,15 +45,46 @@ async function loadTodos() {
 
         row.innerHTML = `
             <td>${application.id}</td>
-            <td>${application.company}</td>
-            <td>${application.source}</td>
-            <td>${application.season}</td>
-            <td>${application.date}</td>
+            <td contenteditable="true">${application.company}</td>
+            <td contenteditable="true">${application.source}</td>
+            <td contenteditable="true">${application.season}</td>
+            <td contenteditable="true">${application.date}</td>
+            <td>
+                <button type="button" class="btn btn-danger btn-xs" id="delete-${application.id}">Delete</button>
+            </td>
         `
         applicationsContainer.appendChild(row)
+        const deleteButton = document.getElementById(`delete-${application.id}`)
+        deleteButton.addEventListener("click", async (event) => {
+            const id = application.id
+            await fetch(`/api/applications/${id}`, {
+                method: "DELETE"
+            })
+            loadTodos()
+        })
+        const cells = row.getElementsByTagName("td")
+        for(let i = 1; i < 5; i++) {
+            cells[i].addEventListener("blur", async (event) => {
+                const id = application.id
+                const updatedValue = event.target.innerText
+                await fetch(`/api/applications/${id}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        company: cells[1].textContent,
+                        source: cells[2].textContent,
+                        season: cells[3].textContent,
+                        date: cells[4].textContent
+                    })
+                })
+            })
+        }
     })
 
 
 }
+
 
 

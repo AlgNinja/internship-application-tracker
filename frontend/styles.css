@@ -1,0 +1,31 @@
+body {
+  background-color: #f5f7fb;
+  color: #2a2f3a;
+}
+
+.app-shell {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.form-control,
+.btn,
+.panel {
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.btn {
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .app-shell {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  .btn-block {
+    width: 100%;
+  }
+}

@@ -46,6 +46,20 @@ app.post("/api/applications", async (req, res) => {
     }
 })
 
+app.delete ("/api/applications/:id", async (req, res) => {
+    const { id } = req.params
+    try {
+        const result = await pool.query(
+            "DELETE FROM applications WHERE id = $1 RETURNING *",
+            [id]
+        )
+        res.sendStatus(204)
+    } catch(e) {
+        console.error(e)
+    }
+
+})
+
 app.get("/api/applications", async (req, res) => {
     try {
         const result = await pool.query(
@@ -56,6 +70,16 @@ app.get("/api/applications", async (req, res) => {
     } catch(e) {
         console.error(e)
     }
+})
+
+app.put("/api/applications/:id", async (req, res) => {
+    const { id } = req.params
+    const { company, source, season, date } = req.body
+    const result = await pool.query(
+        "UPDATE applications SET company = $1, source = $2, season = $3, date = $4 WHERE id = $5 RETURNING *",
+        [company, source, season, date, id]
+    )
+    res.json(result.rows[0])
 })
 
 app.listen(port,  () => {
