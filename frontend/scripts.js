@@ -1,4 +1,4 @@
-const form = document.getElementById("application")
+﻿const form = document.getElementById("application")
 const companyInput = document.getElementById("company")
 const sourceInput = document.getElementById("source")
 const seasonInput = document.getElementById("season")
@@ -9,10 +9,10 @@ const applicationsContainer = document.getElementById("applications")
 form.addEventListener("submit", async (event) => {
     event.preventDefault()
 
-    const company =  companyInput.value
-    const source =  sourceInput.value
-    const season =  seasonInput.value
-    const date =  dateInput.value
+    const company = companyInput.value
+    const source = sourceInput.value
+    const season = seasonInput.value
+    const date = dateInput.value
 
     await fetch("/api/applications", {
         method: "POST",
